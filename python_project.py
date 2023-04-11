@@ -1,50 +1,61 @@
-cart = []
-def add_item(item):
-    cart.append(item)
-    print(item)
-    print( f"{item} has ben  added")
+class Cart():
 
-def remove_item(item):
-    try:
-        cart.remove(item)
-        print(item)
-        print(f"{item} has been removed")
-    except:
-        print(cart)
-        print('Sorry we could not remove that item')
+    def __init__(self, cart_1 = []):
+        self.cart_1 = cart_1
 
-def show_cart():
-    if cart:
-        print(cart)
-        print("here is cart")
-        for item in cart:
-            print(f"{item}")
-    else:
-        print("Your cart is empty")
+    def add_item(self, item):
+        self.item = item
+        self.cart_1.append(self.item)
+        print(self.cart_1)
+        print(f"{self.item} has been added to your shopping cart")
 
-def clear_cart():
-    cart.clear()
-    print("Your chart has been cleared")
+    def remove_item(self, item):
+        self.item = item
+        self.cart_1.remove(self.item)
+        try:
+            print(self.cart_1)
+            print(f"{self.item} has been removed from your shopping cart")
 
-def main():
-    done = False
+        except:
+            print(self.cart_1)
+            print('Sorry we could not remove that item')
 
-    while not done:
+    def show_cart(self):
+        print(self.cart_1)
 
-        action = input("Choose action:add, delete, quit or show chart: ").lower()
-        if action == "quit":
-            print("Thanks for shopping with us")
-            break
-        elif action == "add":
-            item = input("What would you like to add: ").title()
-            add_item(item)
-        elif action == "remove":
-                item = input("What would you like to add: ").title()
-                remove_item(item)
-        elif action == "show":
-                show_cart()
-        elif action == "clear":
-                clear_cart()
-        else:
+    def clear_cart(self):
+        self.cart_1.clear()
+        print("Your chart has been cleared")
+
+    def main(self,):
+        while True:
+            action = input("Choose action:add, delete, quit, clear show chart: ").lower()
+            if action.lower() == "quit":
+                print("Thanks for shopping with us")
+                break
+            elif action.lower() == "add":
+                self.item = input("What would you like to add: ").title()
+                self.cart_1.append(self.item)
+                print(self.cart_1)
+                print(f"{self.item} has been added to your shopping cart")
+            elif action.lower() == "remove":
+                if self.item in self.cart_1:
+                    self.item = input("What would you like to add: ").title()
+                    self.cart_1.remove(self.item)
+                    print(self.cart_1)
+                    print(f"{self.item} has been removed from your shopping cart")
+                else:
+                    print(self.cart_1)
+                    print('Sorry item is not present in cart')
+            elif action.lower() == "show":
+                print(self.cart_1)
+            elif action.lower() == "clear":
+                self.cart_1.clear()
+                print(self.cart_1)
+                print("Your chart has been cleared")
+            else:
                 print("Unrecognized Action")
-main()
+        return
+
+cart_2 = Cart()
+cart_2.main()
